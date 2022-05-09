@@ -97,19 +97,16 @@ function bwlimit-enable() {
   user=$(cat "${dbdir}/${cn}")
   [[ "$debug" > 0 ]] && echo "subscription=$user"
 
-  #  if [ "$user" == "gold" ]; then
-  #    downrate=100mbit
-  #    uprate=100mbit
-  #  elif [ "$user" == "silver" ]; then
-  #    downrate=10mbit
-  #    uprate=10mbit
-  #  elif [ "$user" == "bronze" ]; then
-  #    downrate=1mbit
-  #    uprate=1mbit
-  #  else
-  downrate=6mbit
-  uprate=6mbit
-  #  fi
+    if [ "$user" == "vip" ]; then
+      downrate=100mbit
+      uprate=100mbit
+    elif [ "$user" == "normal" ]; then
+      downrate=10mbit
+      uprate=10mbit
+    else
+      downrate=1kbit
+      uprate=1kbit
+    fi
 
   # Limit traffic from VPN server to client
   sudo tc class add dev "$dev" parent 1: classid 1:"$classid" htb rate "$downrate"
