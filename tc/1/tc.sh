@@ -106,11 +106,6 @@ function bwlimit-enable() {
     downrate=10mbit
     uprate=10mbit
   fi
-  if [ "$user" == "free" ]; then
-    downrate=500kbit
-    uprate=500kbit
-  fi
-
   # Limit traffic from VPN server to client
   sudo tc class add dev "$dev" parent 1: classid 1:"$classid" htb rate "$downrate"
   sudo tc filter add dev "$dev" parent 1:0 protocol ip prio 1 \
