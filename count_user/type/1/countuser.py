@@ -38,7 +38,7 @@ class CountUser:
             'city': str(data_from_ip_info["city"]),
             'region': str(data_from_ip_info["region"]),
             'country': str(data_from_ip_info["country"]),
-            'vpn_type': self.vpn_type,
+            'vpn_type': 1,
             'cpu': self.cpu,
             'ram': self.ram,
             'status_vpn': isserverrunning

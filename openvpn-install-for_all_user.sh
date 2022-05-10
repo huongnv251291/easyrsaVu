@@ -883,7 +883,7 @@ push "redirect-gateway ipv6"' >>/etc/openvpn/server.conf
     echo "tls-auth tls-auth.key 0" >>/etc/openvpn/server.conf
     ;;
   esac
-  #  echo "duplicate-cn" >>/etc/openvpn/server.conf
+  echo "duplicate-cn" >>/etc/openvpn/server.conf
   if [[ "$NUMBER_CONNECTION" -ge 1 ]]; then
     echo "max-clients $NUMBER_CONNECTION" >>/etc/openvpn/server.conf
   fi
@@ -1089,7 +1089,7 @@ resultData = {
     'city': str(dataFromIpInfo[\"city\"]),
     'region': str(dataFromIpInfo[\"region\"]),
     'country': str(dataFromIpInfo[\"country\"]),
-    'vpn_type': 1,
+    'vpn_type': 0,
     'status_vpn': 1
     'source': 0
 }
@@ -1106,7 +1106,7 @@ print(var.text)" >>/etc/openvpn/pushInfoToMainSv.py
     chmod +x /etc/openvpn/createclient.sh
     wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/removeclient.sh -O /etc/openvpn/removeclient.sh
     chmod +x /etc/openvpn/removeclient.sh
-    wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/controlvpn/tcvip/tc.sh -O /etc/openvpn/tc.sh
+    wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/controlvpn/tc/0/tc.sh -O /etc/openvpn/tc.sh
     chmod +x /etc/openvpn/tc.sh
     wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/controlvpn/resetvpn.sh -O /etc/openvpn/resetvpn.sh
     chmod +x /etc/openvpn/resetvpn.sh
@@ -1142,7 +1142,7 @@ client-disconnect /etc/openvpn/tc.sh" >>/etc/openvpn/server.conf
       systemctl start openvpn@server
     fi
     cd
-    wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/api-install.sh -O api-install.sh
+    wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/install/api/0/api-install.sh -O api-install.sh
     chmod +x api-install.sh
     ./api-install.sh
   else

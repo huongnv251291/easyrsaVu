@@ -6,7 +6,7 @@ yes | apt install python3-venv
 pip install psutil
 chmod 777 -Rv /var/log/openvpn/status.log
 cd /etc/openvpn || return
-wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/count_user/countuser.py -O /etc/openvpn/countuser.py
+wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/count_user/type/0/countuser.py -O /etc/openvpn/countuser.py
 chmod 777 -Rv /etc/openvpn/countuser.py
 touch /etc/openvpn/countuser.sh
 chmod +x /etc/openvpn/countuser.sh
