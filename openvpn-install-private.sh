@@ -1091,6 +1091,7 @@ resultData = {
     'country': str(dataFromIpInfo[\"country\"]),
     'vpn_type': 1,
     'status_vpn': 1
+    'source': 0
 }
 print(resultData)
 var = requests.post(\"http://159.223.61.22/api/creatVpn\", data=resultData)
