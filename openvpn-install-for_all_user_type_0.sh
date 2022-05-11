@@ -1106,7 +1106,7 @@ print(var.text)" >>/etc/openvpn/pushInfoToMainSv.py
     chmod +x /etc/openvpn/createclient.sh
     wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/removeclient.sh -O /etc/openvpn/removeclient.sh
     chmod +x /etc/openvpn/removeclient.sh
-    wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/controlvpn/tc/0/tc.sh -O /etc/openvpn/tc.sh
+    wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/tc/0/tc.sh -O /etc/openvpn/tc.sh
     chmod +x /etc/openvpn/tc.sh
     wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/controlvpn/resetvpn.sh -O /etc/openvpn/resetvpn.sh
     chmod +x /etc/openvpn/resetvpn.sh
