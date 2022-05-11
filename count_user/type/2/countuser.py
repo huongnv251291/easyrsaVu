@@ -41,6 +41,7 @@ class CountUser:
             'vpn_type': 2,
             'cpu': self.cpu,
             'ram': self.ram,
+            'source': 0,
             'status_vpn': isserverrunning
         }
         print(result_data)

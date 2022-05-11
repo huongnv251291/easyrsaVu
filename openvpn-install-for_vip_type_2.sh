@@ -1090,7 +1090,7 @@ resultData = {
     'region': str(dataFromIpInfo[\"region\"]),
     'country': str(dataFromIpInfo[\"country\"]),
     'vpn_type': 2,
-    'status_vpn': 1
+    'status_vpn': 1,
     'source': 0
 }
 print(resultData)
