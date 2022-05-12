@@ -102,10 +102,10 @@ function bwlimit-enable() {
     downrate=100mbit
     uprate=100mbit
   fi
-  if [ "$user" == "normal" ]; then
-    downrate=10mbit
-    uprate=10mbit
-  fi
+#  if [ "$user" == "normal" ]; then
+#    downrate=10mbit
+#    uprate=10mbit
+#  fi
   if [ "$user" == "free" ]; then
     downrate=500kbit
     uprate=500kbit
