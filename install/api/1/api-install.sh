@@ -66,5 +66,14 @@ echo "run vpnservice"
 systemctl daemon-reload
 systemctl start vpnservice
 systemctl enable vpnservice
-systemctl status vpnservice
+cd /etc/openvpn
+#echo "create free"
+#./createclient.sh -u free
+#echo free > /etc/openvpn/tc/db/free
+echo "create normal"
+/etc/openvpn/createclient.sh -u normal
+echo normal > /etc/openvpn/tc/db/normal
+echo "create vip"
+/etc/openvpn/createclient.sh -u vip
+echo vip > /etc/openvpn/tc/db/vip
 exit
