@@ -72,8 +72,8 @@ def ping(i):
         if 'region' in data_from_ip_info:
             i['city'] = str(data_from_ip_info['region'])
         print(i['config'])
-        dataOrigin = i['config'].replace("\n", "")
-        i['config'] =
+        data_origin = str(base64.b64decode(i['config'].replace("\n", "")).decode("UTF-8"))
+        i['config'] = encryptToBase64(keyEncrypt, ivEncrypt, data_origin)
         print(i)
         print(f"UP {ip} Ping Successful")
         return i
