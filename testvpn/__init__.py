@@ -5,7 +5,7 @@ import os
 import time
 from os.path import exists
 
-import AES as AES
+from Crypto.Cipher import AES
 import requests
 
 block_size = AES.block_size
@@ -63,7 +63,6 @@ def ping(i):
     ip = i['ip']
     print(ip)
     res = os.popen(f"ping {ip}").read()
-    print(res)
     if "Received = 4" in res:
         r = requests.get(f"https://ipinfo.io/ {ip} /json")
         data_from_ip_info = json.loads(r.text)
@@ -71,10 +70,8 @@ def ping(i):
             i['city'] = str(data_from_ip_info['city'])
         if 'region' in data_from_ip_info:
             i['city'] = str(data_from_ip_info['region'])
-        print(i['config'])
         data_origin = str(base64.b64decode(i['config'].replace("\n", "")).decode("UTF-8"))
-        i['config'] = encryptToBase64(keyEncrypt, ivEncrypt, data_origin)
-        print(i)
+        i['config'] = encryptToBase64(keyEncrypt, ivEncrypt, data_origin).replace("\n", "")
         print(f"UP {ip} Ping Successful")
         return i
     else:
@@ -96,7 +93,7 @@ if __name__ == "__main__":
              'max_connection': 0,
              'city': str(item['CountryLong']),
              'country': str(item['CountryShort']),
-             'vpn_type': 1,
+             'vpn_type': 0,
              'cpu': 0,
              'ram': 0,
              'lastTimeSync': int(time.time() * 1000),
@@ -107,13 +104,14 @@ if __name__ == "__main__":
     with multiprocessing.Pool(num_threads) as pool:
         result = pool.map(ping, [i for i in listConvert])
     for value in result:
-        print(value)
         if not str(value).__eq__('None'):
             listData.append(value)
     result_data = {
-        'data': listData,
+        'dataVpn': listData,
+        'source': 2
     }
-    print(result_data)
+    data = requests.post("http://159.223.61.22/api/creatVpnFromList", json=result_data)
+    print(data)
     # print("server live :" + str(len(listData)))
     # file_exists = exists('E://server_other_live.json')
     # print(file_exists)
