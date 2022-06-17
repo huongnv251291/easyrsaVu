@@ -81,10 +81,16 @@ def ping(i):
 
 if __name__ == "__main__":
     listData = []
-    my_file_handle = open('C://Users//choco//Downloads//serverbackup.json')
-    data = json.load(my_file_handle)
+
+    response = requests.get("https://vpndata-b6b61-default-rtdb.asia-southeast1.firebasedatabase.app/data.json")
+    data = json.loads(response.text)
+    print(data)
+    # my_file_handle = open('C://Users//choco//Downloads//serverbackup.json')
+    # data = json.load(my_file_handle)
     listConvert = []
     for item in data:
+        data_origin = str(base64.b64decode(str(item['OpenVPN_ConfigData_Base64']).replace("\n", "")).decode("UTF-8"))
+        config = encryptToBase64(keyEncrypt, ivEncrypt, data_origin).replace("\n", "")
         listConvert.append(
             {'id': str(item['IP'].replace('.', '', )),
              'host_name': 'vpn' + str(item['IP'].replace('.', '', )),
@@ -99,15 +105,9 @@ if __name__ == "__main__":
              'lastTimeSync': int(time.time() * 1000),
              'online': 1,
              'source': 2,
-             'config': str(item['OpenVPN_ConfigData_Base64'])})
-    num_threads = 2 * multiprocessing.cpu_count()
-    with multiprocessing.Pool(num_threads) as pool:
-        result = pool.map(ping, [i for i in listConvert])
-    for value in result:
-        if not str(value).__eq__('None'):
-            listData.append(value)
+             'config': config})
     result_data = {
-        'dataVpn': listData,
+        'dataVpn': listConvert,
         'source': 2
     }
     data = requests.post("http://159.223.61.22/api/creatVpnFromList", json=result_data)

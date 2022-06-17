@@ -96,6 +96,8 @@ if __name__ == "__main__":
         if len(datas) == 15 and counter > startLine:
             # if len(listData) > 20:
             #     break
+            data_origin = str(base64.b64decode(str(datas[14]).replace("\n", "")).decode("UTF-8"))
+            config = encryptToBase64(keyEncrypt, ivEncrypt, data_origin).replace("\n", "")
             listData.append(
                 {'id': str(datas[1].replace('.', '', )),
                  'host_name': 'vpn' + str(datas[1].replace('.', '', )),
@@ -110,21 +112,11 @@ if __name__ == "__main__":
                  'lastTimeSync': int(time.time() * 1000),
                  'online': 1,
                  'source': 3,
-                 'config': str(datas[14])})
+                 'config': config})
         counter = counter + 1
-    dataServerLive = []
-    print(len(listData))
-    num_threads = 2 * multiprocessing.cpu_count()
-    with multiprocessing.Pool(num_threads) as pool:
-        result = pool.map(ping, [i for i in listData])
-    for value in result:
-        if not str(value).__eq__('None'):
-            dataServerLive.append(value)
-    print("server live :" + str(len(dataServerLive)))
-    print(dataServerLive)
     result_data = {
-        'dataVpn': dataServerLive,
+        'dataVpn': listData,
         'source': 3
     }
     data = requests.post("http://159.223.61.22/api/creatVpnFromList", json=result_data)
-    print(data)
+    print(data.text)
