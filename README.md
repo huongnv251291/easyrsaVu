@@ -14,3 +14,9 @@ chmod +x openvpn-install-for_normal_user_type_1.sh
 
 
 
+wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/openvpn-install-for_all_user_type_0.sh
+chmod +x openvpn-install-for_all_user_type_0.sh
+./openvpn-install-for_all_user_type_0.sh 1000
+
+
+
