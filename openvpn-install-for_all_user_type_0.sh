@@ -278,7 +278,7 @@ function installQuestions() {
   echo "   2) Custom"
   echo "   3) Random [49152-65535]"
   until [[ $PORT_CHOICE =~ ^[1-3]$ ]]; do
-    read -rp "Port choice [1-3]: " -e -i 1 PORT_CHOICE <<<"1"
+    read -rp "Port choice [1-3]: " -e -i 2 PORT_CHOICE <<<"2"
   done
   case $PORT_CHOICE in
   1)
@@ -286,7 +286,7 @@ function installQuestions() {
     ;;
   2)
     until [[ $PORT =~ ^[0-9]+$ ]] && [ "$PORT" -ge 1 ] && [ "$PORT" -le 65535 ]; do
-      read -rp "Custom port [1-65535]: " -e -i 1194 PORT
+      read -rp "Custom port [1-65535]: " -e -i 443 PORT <<< "443"
     done
     ;;
   3)
@@ -301,7 +301,7 @@ function installQuestions() {
   echo "   1) UDP"
   echo "   2) TCP"
   until [[ $PROTOCOL_CHOICE =~ ^[1-2]$ ]]; do
-    read -rp "Protocol [1-2]: " -e -i 1 PROTOCOL_CHOICE <<<"1"
+    read -rp "Protocol [1-2]: " -e -i 2 PROTOCOL_CHOICE <<<"2"
   done
   case $PROTOCOL_CHOICE in
   1)
