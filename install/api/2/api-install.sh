@@ -11,7 +11,8 @@ chmod 777 -Rv /etc/openvpn/countuser.py
 touch /etc/openvpn/countuser.sh
 chmod +x /etc/openvpn/countuser.sh
 echo "#!/bin/bash
-python3 -i  /etc/openvpn/countuser.py" >>/etc/openvpn/countuser.sh
+python3 -i  /etc/openvpn/countuser.py
+exit 0" >>/etc/openvpn/countuser.sh
 cat >/etc/systemd/system/countuser.service <<EOF
 [Unit]
 Description=CountUser Service

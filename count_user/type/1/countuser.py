@@ -107,3 +107,4 @@ class CountUser:
 
 
 CountUser().run()
+exit(0)

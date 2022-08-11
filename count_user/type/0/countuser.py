@@ -83,6 +83,7 @@ class CountUser:
                 #     self.update_new_infor(0, 0)
             except:
                 continue
+
         # else:
         #     break
 
@@ -107,3 +108,4 @@ class CountUser:
 
 
 CountUser().run()
+exit(0)
