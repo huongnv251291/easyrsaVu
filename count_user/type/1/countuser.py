@@ -66,10 +66,12 @@ class CountUser:
 
     def run(self):
         # self.print_time()
-        while True:
+        x = 60
+        while x > 0:
+            x = x - 10
             thread = Thread(target=self.get_cpu())
             thread.start()
-            sleep(5)
+            sleep(10)
             # file = Path("/var/log/openvpn/status.log")
             # if file.is_file():
             try:
@@ -94,7 +96,7 @@ class CountUser:
             'ram': self.ram,
             'status_vpn': isserverrunning
         }
-        path = "http://159.223.61.22/api/updateNumberConnect"
+        path = "http://128.199.228.231/api/updateNumberConnect"
         data = requests.post(path, data=pload)
         data_from_ip_info = json.loads(data.text)
         error = data_from_ip_info["code"]
