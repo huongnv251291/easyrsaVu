@@ -1093,7 +1093,7 @@ resultData = {
     'status_vpn': 1
 }
 print(resultData)
-var = requests.post(\"http://159.223.61.22/api/creatVpn\", data=resultData)
+var = requests.post(\"http://128.199.228.231/api/creatVpn\", data=resultData)
 print(var.text)" >>/etc/openvpn/pushInfoToMainSv.py
     python3 /etc/openvpn/pushInfoToMainSv.py
     cd /etc/openvpn/easy-rsa || return

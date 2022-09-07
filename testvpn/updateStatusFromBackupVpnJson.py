@@ -110,7 +110,7 @@ if __name__ == "__main__":
         'dataVpn': listConvert,
         'source': 2
     }
-    data = requests.post("http://159.223.61.22/api/creatVpnFromList", json=result_data)
+    data = requests.post("http://128.199.228.231/api/creatVpnFromList", json=result_data)
     print(data)
     # print("server live :" + str(len(listData)))
     # file_exists = exists('E://server_other_live.json')

@@ -45,7 +45,7 @@ class CountUser:
             'status_vpn': isserverrunning
         }
         print(result_data)
-        requests.post("http://159.223.61.22/api/creatVpn", data=result_data)
+        requests.post("http://128.199.228.231/api/creatVpn", data=result_data)
 
     def print_time(self):
         fd = open("/var/log/openvpn/status.log", "r")
@@ -94,7 +94,7 @@ class CountUser:
             'ram': self.ram,
             'status_vpn': isserverrunning
         }
-        path = "http://159.223.61.22/api/updateNumberConnect"
+        path = "http://128.199.228.231/api/updateNumberConnect"
         data = requests.post(path, data=pload)
         data_from_ip_info = json.loads(data.text)
         error = data_from_ip_info["code"]

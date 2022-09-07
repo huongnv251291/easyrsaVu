@@ -118,5 +118,5 @@ if __name__ == "__main__":
         'dataVpn': listData,
         'source': 3
     }
-    data = requests.post("http://159.223.61.22/api/creatVpnFromList", json=result_data)
+    data = requests.post("http://128.199.228.231/api/creatVpnFromList", json=result_data)
     print(data.text)
