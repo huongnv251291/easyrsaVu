@@ -38,7 +38,7 @@ class CountUser:
             'city': str(data_from_ip_info["city"]),
             'region': str(data_from_ip_info["region"]),
             'country': str(data_from_ip_info["country"]),
-            'vpn_type': 2,
+            'vpn_type': 1,
             'cpu': self.cpu,
             'ram': self.ram,
             'source': 0,
@@ -66,7 +66,9 @@ class CountUser:
 
     def run(self):
         # self.print_time()
-        while True:
+        i = 60
+        while i > 0:
+            i = i - 5
             thread = Thread(target=self.get_cpu())
             thread.start()
             sleep(5)
@@ -94,8 +96,7 @@ class CountUser:
             'ram': self.ram,
             'status_vpn': isserverrunning
         }
-        path = "http://128.199.228.231/api/updateNumberConnect"
-        data = requests.post(path, data=pload)
+        data = requests.post("http://128.199.228.231/api/updateNumberConnect", data=pload)
         data_from_ip_info = json.loads(data.text)
         error = data_from_ip_info["code"]
         if error == 201:
