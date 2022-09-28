@@ -1089,7 +1089,7 @@ resultData = {
     'city': str(dataFromIpInfo[\"city\"]),
     'region': str(dataFromIpInfo[\"region\"]),
     'country': str(dataFromIpInfo[\"country\"]),
-    'vpn_type': 2,
+    'vpn_type': 1,
     'status_vpn': 1,
     'source': 0
 }
