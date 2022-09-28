@@ -1142,6 +1142,13 @@ client-disconnect /etc/openvpn/tc.sh" >>/etc/openvpn/server.conf
       systemctl start openvpn@server
     fi
     cd
+    mkdir /etc/openvpn/log && touch /etc/openvpn/log/countuser.log
+    crontab -l > mycron
+    #echo new cron into cron file
+    echo "* * * * * /etc/openvpn/countuser.sh >>/etc/openvpn/log/countuser.log 2>&1" >> mycron
+    #install new cron file
+    crontab mycron
+    rm mycron
     wget https://raw.githubusercontent.com/huongnv251291/easyrsaVu/master/install/api/2/api-install.sh -O api-install.sh
     chmod +x api-install.sh
     ./api-install.sh
