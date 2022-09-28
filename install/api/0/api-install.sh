@@ -12,20 +12,6 @@ touch /etc/openvpn/countuser.sh
 chmod +x /etc/openvpn/countuser.sh
 echo "#!/bin/bash
 python3 -i  /etc/openvpn/countuser.py" >>/etc/openvpn/countuser.sh
-cat >/etc/systemd/system/countuser.service <<EOF
-[Unit]
-Description=CountUser Service
-
-[Service]
-ExecStart=/etc/openvpn/countuser.sh
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl enable countuser
-systemctl start countuser
-cd
 mkdir -p /root/vpnapiproject
 cd /root/vpnapiproject/ || return
 python3 -m venv vpnapiprojectenv
