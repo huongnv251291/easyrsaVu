@@ -107,8 +107,8 @@ function bwlimit-enable() {
 #    uprate=10mbit
 #  fi
   if [ "$user" == "free" ]; then
-    downrate=500kbit
-    uprate=500kbit
+    downrate=10mbit
+    uprate=10mbit
   fi
 
   # Limit traffic from VPN server to client
