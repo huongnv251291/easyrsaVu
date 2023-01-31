@@ -21,7 +21,7 @@ elif [ "${SUDO_USER}" ]; then
     # If running sudo as root
     homeDir="/root"
   else
-    homeDir="/home/${SUDO_USER}"
+    homeDir="/home/root"
   fi
 else
   # if not SUDO_USER, use /root
