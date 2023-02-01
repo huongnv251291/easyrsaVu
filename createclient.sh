@@ -21,7 +21,7 @@ elif [ "${SUDO_USER}" ]; then
     # If running sudo as root
     homeDir="/root"
   else
-    homeDir="/home/root"
+    homeDir="/home/${SUDO_USER}"
   fi
 else
   # if not SUDO_USER, use /root
@@ -79,4 +79,7 @@ cp /etc/openvpn/client-template.txt "$homeDir/$CLIENT.ovpn"
   esac
 } >>"$homeDir/$CLIENT.ovpn"
 echo "$homeDir/$CLIENT.ovpn"
+if [ -f "$FILE" ]; then
+    echo "$FILE exists."
+fi
 exit 0
