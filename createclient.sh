@@ -79,7 +79,4 @@ cp /etc/openvpn/client-template.txt "$homeDir/$CLIENT.ovpn"
   esac
 } >>"$homeDir/$CLIENT.ovpn"
 echo "$homeDir/$CLIENT.ovpn"
-if [ -f "$FILE" ]; then
-    echo "$FILE exists."
-fi
 exit 0
