@@ -26,13 +26,20 @@ class CountUser:
 
     def push_new_vpn_to_dash_broad(self, b, isserverrunning):
         self.read_config()
-        r = requests.get("https://ipinfo.io/json")
+        real_ip = requests.get("https://api64.ipify.org/?format=json")
+        # dữ liệu trả về có thể là ipv4 hoặc ipv6
+        real_ip_json = json.loads(real_ip.text)
+        r = requests.get("http://ip-api.com/json/"+real_ip_json["ip"])
         data_from_ip_info = json.loads(r.text)
-        id_vps = str(data_from_ip_info["ip"]).replace(".", "")
+        # get ipv4 để sử dụng làm data db
+        ip_v4_data = requests.get("https://api.ipify.org/?format=json")
+        ip_v4 = json.loads(ip_v4_data.text)
+        id_vps = str(ip_v4["ip"]).replace(".", "")
         result_data = {
             'id': id_vps,
             'host_name': "vpn" + str(id_vps),
-            'ip': str(data_from_ip_info["ip"]),
+            'ip': str(ip_v4["ip"]),
+            'ip_api64': real_ip_json["ip"],
             'current_connection': b,
             'max_connection': self.max_current_connection,
             'city': str(data_from_ip_info["city"]),
